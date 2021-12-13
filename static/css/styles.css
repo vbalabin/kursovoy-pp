@@ -1,0 +1,19 @@
+body {
+  font-family: "Roboto";
+  background-color: rgba(204, 206, 207, .5);
+}
+.auth-card {
+  max-width: 450px;
+}
+.img-aspect {
+  width: auto;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 960px;
+}
+
+a.navbar-brand {
+  color: blue;
+}
