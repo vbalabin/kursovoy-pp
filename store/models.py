@@ -8,6 +8,17 @@ class Category(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
     slug = models.SlugField(unique=True, max_length=100, db_index=True)
 
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+
+    def get_absolute_path(self):
+        return reverse('store:product_list') + f'?category={self.id}'
+
+    def __str__(self):
+        return self.name
+
 
 class Product(models.Model):
     category = models.ForeignKey(
@@ -19,5 +30,14 @@ class Product(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='media/products/%Y/%m/%d/', blank=True)
-    availibility = models.BooleanField(null=False, default=True)
+    availability = models.BooleanField(null=False, default=True)
 
+    class Meta:
+        index_together = ('id', 'slug')
+        ordering = ('-created',)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('store:product_details', kwargs={'slug': self.slug})

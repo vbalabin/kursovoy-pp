@@ -26,6 +26,15 @@ class Order(models.Model):
         choices=choices, max_length=10, default='Pending')
     total_price = models.FloatField(null=False, blank=False)
 
+    class Meta:
+        ordering = ('-created',)
+
+    def __str__(self):
+        return f'Order {self.id}'
+
+    def get_absolute_url(self):
+        return reverse('orders:invoice', kwargs={'pk': self.pk})
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(
@@ -34,3 +43,6 @@ class OrderItem(models.Model):
         Product, related_name='ordered', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     total = models.FloatField(null=False, blank=False)
+
+    def __str__(self):
+        return f'Order Item {self.id}'
