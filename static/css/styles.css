@@ -7,13 +7,8 @@ body {
 }
 .img-aspect {
   width: auto;
-  margin: 0 auto;
 }
 
 .container {
   max-width: 960px;
-}
-
-a.navbar-brand {
-  color: blue;
 }
