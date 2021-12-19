@@ -21,7 +21,7 @@
           <td>
             <a href="{{i.product.get_absolute_url}}"> {{i.product.name}} </a>
           </td>
-          <td>Rs.{{i.product.price}}</td>
+          <td>{{i.product.price}} rub</td>
           <td>
             <form
               action="{% url 'cart:add' %}"
@@ -48,7 +48,7 @@
               <i class="fa fa-times mr-1"></i> Remove
             </a>
           </td>
-          <td>Rs.{{i.total}}</td>
+          <td>{{i.total}} rub</td>
         </tr>
         {% endfor %}
       </tbody>
@@ -56,7 +56,7 @@
         <tr>
           <td colspan="3"></td>
           <td>Grand Total -</td>
-          <td><b>Rs.{{total}}</b></td>
+          <td><b>{{total}} rub</b></td>
         </tr>
       </tfoot>
     </table>
